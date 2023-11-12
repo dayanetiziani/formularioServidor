@@ -8,6 +8,42 @@ import express from 'express';
 const porta = 3000;
 const host = '0.0.0.0';
 
+const app = express();
+
+//indicando para a aplicação como servir arquivos estáticos localizados na pasta 'paginas'
+app.use(express.static('./paginas'));
+
+app.get('/', (requisicao, resposta) => {
+    resposta.end(`<!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ação Natal 2023 - Página Inicial</title>
+        <style>
+        body{/* estiliza o que estiver na pagina*/
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+    </style>
+    </head>
+    <body>
+        <h1 >CAMPANHA PAPAI NOEL 2023</h1>
+        <hr>
+        <p>Que tal enviar a cartinha para o Papai Noel por aqui?</p>
+        <p>Basta clicar no link "Cadastrar Carta", preencher corretamente o formulário e enviar a cartinha.</p>
+        <ul>
+            <p><a href="/formulario.html">Cadastrar Carta</a></p>
+        </ul>
+`);
+})
+
+app.get('/lista', processaCartasUsuario);
+
+app.listen(porta, host, () => {
+    console.log(`Servidor executando na url http://${host}:${porta}`);
+});
+
 var listaCartasUsuario = [];
 
 function processaCartasUsuario(requisicao, resposta){
@@ -26,11 +62,11 @@ function processaCartasUsuario(requisicao, resposta){
                       idade: requisicao.query.idade,
                       anoMeses: requisicao.query.anoMeses,
                       sexo: requisicao.query.sexo,
-                      pedido1: requisicao.query.pedido1,
+                      pedido1: requisicao.query.presentes1,
                       descricao1: requisicao.query.descricao1,
-                      pedido2: requisicao.query.pedido2,
+                      pedido2: requisicao.query.presentes2,
                       descricao2: requisicao.query.descricao2,
-                      pedido3: requisicao.query.pedido3,
+                      pedido3: requisicao.query.presentes3,
                       descricao3: requisicao.query.descricao3
                     }
     //adiciona um novo usuário na lista de usuários já cadastrados
@@ -85,7 +121,7 @@ function processaCartasUsuario(requisicao, resposta){
             </tbody>
             </table>
            
-            <a button type="button" class="btn btn-outline-danger" href="/">Danger</button>
+            <a button type="button" class="btn btn-outline-warning" href="/">Página Inicial</button>
             <a class="btn btn-primary" href="/formulario.html" role="button">Continuar cadastrando</a>
         </body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -94,43 +130,3 @@ function processaCartasUsuario(requisicao, resposta){
 
     resposta.end(conteudoResposta);
 }
-
-
-const app = express();
-
-//indicando para a aplicação como servir arquivos estáticos localizados na pasta 'paginas'
-app.use(express.static('./paginas'));
-
-
-app.use('/', (requisicao, resposta) => {
-    resposta.end(`<!DOCTYPE html>
-    <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ação Natal 2023 - Página Inicial</title>
-        <style>
-        body{/* estiliza o que estiver na pagina*/
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
-        }
-    </style>
-    </head>
-    <body>
-        <h1 >CAMPANHA PAPAI NOEL 2023</h1>
-        <hr>
-        <p>Que tal enviar a cartinha para o Papai Noel por aqui?</p>
-        <p>Basta clicar no link "Cadastrar Carta", preencher corretamente o formulário e enviar a cartinha.</p>
-        <ul>
-            <p><a href="/formulario.html">Cadastrar Carta</a></p>
-        </ul>
-`);
-})
-
-//criar rota para processar o cadastro de usuários endpoint = '/formulario'
-
-app.get('/formulario', processaCartasUsuario);
-
-app.listen(porta, host, () => {
-    console.log(`Servidor executando na url http://${host}:${porta}`);
-});
