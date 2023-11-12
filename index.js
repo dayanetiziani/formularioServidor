@@ -1,9 +1,9 @@
 //sintaxe moderna não funciona no vercell
-import express from 'express';
+//import express from 'express';
 
 //exemplo de importação de biblioteca usando type:'commonjs'
 //sintaxe antiga 
-//express = require('express')
+express = require('express')
 
 const porta = 3000;
 const host = '0.0.0.0';
