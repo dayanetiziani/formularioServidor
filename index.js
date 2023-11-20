@@ -285,7 +285,7 @@ function processaCartasUsuario(requisicao, resposta){
                             <label for="presentes1" class="form-label"></label>
                             <select class="form-select" id="presentes1" name="presentes1" required>
                                 <option selected value="">Pedido</option>
-                                <option value="boneca">Outro</option>
+                                <option value="outro">Outro</option>
                                 <option value="boneca">Boneca</option>
                                 <option value="barbie">Barbie</option>
                                 <option value="jogo-de-panelinha">Jogo de panelinha</option>
@@ -309,7 +309,7 @@ function processaCartasUsuario(requisicao, resposta){
                             <label for="presentes2" class="form-label"></label>
                             <select class="form-select" id="presentes2" name="presentes2" required>
                             <option selected value="">Pedido</option>
-                            <option value="boneca">Outro</option>
+                            <option value="outro">Outro</option>
                             <option value="boneca">Boneca</option>
                             <option value="barbie">Barbie</option>
                             <option value="jogo-de-panelinha">Jogo de panelinha</option>
@@ -509,7 +509,6 @@ function processaCartasUsuario(requisicao, resposta){
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
             
             </html>`;
-
-        resposta.end(conteudoResposta);
     }//fim do if/else validação
+    resposta.end(conteudoResposta);
 }
