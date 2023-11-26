@@ -259,7 +259,7 @@ function processaCartasUsuario(requisicao, resposta){
             if(!dados.anoMeses){
                 conteudoResposta+=`
                             <div>
-                                <p class="text-danger">Por favor, informe se é ano ou meses!</p>
+                                <p class="text-danger">Por favor, ano ou meses)!</p>
                             </div>`;
             }
             conteudoResposta+=`
